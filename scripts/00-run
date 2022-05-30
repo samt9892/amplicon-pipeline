@@ -3,7 +3,7 @@
 ./01-setup							# delete old directories and setup folder structure
 ./02-fastqc                         # QC check reads 
 ./03-merge							# merges raw seq files, set min/max length + max diffs / %id
-./04-strip 							# strip F 26bp, R 25bp
+./04-strip_primers				    # strip F 26bp, R 25bp (modify for your primer lengths)
 ./05-filter							# quality filter seqs maxee=1.0
 ./06-uniques						# list of how many times filtered seqs appear in files 
 ./07-otus 							# make 97% OTU list + 99% ASV list filters chimeras (see log)

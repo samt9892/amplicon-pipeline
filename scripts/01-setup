@@ -1,8 +1,5 @@
 #!/bin/bash
 cd ..
-rm -f -r out/*						# remove out folder and its contents
-rm -f -r export/*					# remove export folder and its contents
-rm -f -r fastqc/*                   # remove fastqc folder and its contents
-mkdir out                           # create out folder
-mkdir export                        # create export folder
-mkdir fastqc                        # create fastqc folder
+rm -f -r out/*						# remove out folder contents
+rm -f -r export/*					# remove export folder contents
+rm -f -r fastqc/*                   # remove fastqc folder contents
