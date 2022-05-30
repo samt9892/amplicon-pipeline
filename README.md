@@ -58,7 +58,7 @@ bash usearch
 bash blastn
 ```
 
-Then download this GitHub repository to your local file system and cd into the repository's folder
+Then download this GitHub repository to your local file system and `cd` into the repository's folder
 
 The folder structure should be as follows:
 ```
