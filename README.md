@@ -15,18 +15,19 @@ This pipeline generates both 97% OTUs and ZOTUs.
 The scripts contained herein are:
 
 ``` 
-00-run.sh                            - setup folder structure and runs the below scripts:
+00-run.sh                            - runs the below scripts:
 
-01-fastqc.sh                         - QC check on reads
-02-merge.sh                          - merges paired-end amplicon reads
-03-strip.sh                          - removes primer binding regions from merged reads
-04-filter.sh                         - quality filtering of stripped reads 
-05-uniques.sh                        - generate unique reads and occurance numbers
-06-otus.sh                           - filters chimeras, clusters OTUs (cluster_otus) and generates ZOTUs (unoise3)
-07-otutable.sh                       - generates 97% OTU and 99% ZOTU tables
-08-taxonomy.sh                       - taxonomy assignment of OTUs/ZOTUs via user-inputted reference database
-09-blast.sh                          - taxonomy assignment of OTUs/ZOTUs using blastn nt database
-10-export.sh	                     - convert files for export into R
+01-setup                             - builds folder structure, removing previous output data
+02-fastqc.sh                         - QC check on reads
+03-merge.sh                          - merges paired-end amplicon reads
+04-strip_primers.sh                  - remove primer binding regions from merged reads
+05-filter.sh                         - quality filtering of stripped reads 
+06-uniques.sh                        - generate unique reads and occurance numbers
+07-otus.sh                           - filters chimeras, clusters OTUs (cluster_otus) and generates ZOTUs (unoise3)
+08-otutable.sh                       - generates 97% OTU and 99% ZOTU tables
+09-taxonomy.sh                       - taxonomy assignment of OTUs/ZOTUs via user-inputted reference database
+10-blast.sh                          - taxonomy assignment of OTUs/ZOTUs using blastn nt database
+11-export.sh	                     - convert files for export into R
 
 ```
 3 files produced for  each clustering type (*OTU/ZOTU*):
@@ -51,13 +52,26 @@ Install BLASTn as per instructions [here](https://iamphioxus.org/2018/01/08/loca
 
 #### Set up analysis environment
 
-Firstly, download this GitHub repository to your local file system and cd into the repository's folder
-
-Confirm both Usearch and BLASTn are installed correctly:
+Firstly, confirm both Usearch and BLASTn are installed correctly:
 ```
 bash usearch
 bash blastn
 ```
+
+Then download this GitHub repository to your local file system and cd into the repository's folder
+
+The folder sturcture is as follows:
+```
+.
+├── export
+├── fastqc
+├── fq
+├── out
+├── reference
+└── scripts
+```
+
+The pipeline expects fastq of your amplicon sequencing data in the /fq folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`
 
 Run the command:
 ```
