@@ -75,7 +75,7 @@ The folder structure should be as follows:
 └── scripts
 ```
 
-The pipeline expects fastq of your amplicon sequencing data in the fq/ folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`
+The pipeline expects demultiplexed fastq of your amplicon sequencing data in the fq/ folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`
 
 An example reference database `ref.fa` is included in the reference/ folder. The naming structure therein should be followed when adding reference sequences.
 
