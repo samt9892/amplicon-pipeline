@@ -83,7 +83,8 @@ An example reference database `ref.fa` is included in the reference/ folder. The
 
 Run the pipeline using the command:
 ```
-$ scripts/./00-run
+$ cd scripts
+$ ./00-run
 ```
 
 ## Authors and contributors
