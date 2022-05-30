@@ -54,11 +54,15 @@ Install BLAST+ as per instructions [here](https://iamphioxus.org/2018/01/08/loca
 
 Firstly, confirm both Usearch and BLASTn are installed correctly:
 ```
-bash usearch
-bash blastn
+$ usearch
+$ blastn
 ```
 
-Then download this GitHub repository to your local file system and cd into the repository's folder
+Then download this GitHub repository to your local file system and `cd` into the repository's folder:
+
+```
+$ git clone https://github.com/samt9892/amplicon-pipeline.git
+```
 
 The folder structure should be as follows:
 ```
@@ -68,14 +72,18 @@ The folder structure should be as follows:
 ├── fq
 ├── out
 ├── reference
+    └── ref.fa
 └── scripts
 ```
 
-The pipeline expects fastq of your amplicon sequencing data in the fq/ folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`
+The pipeline expects demultiplexed fastq of your amplicon sequencing data in the fq/ folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`
+
+An example reference database `ref.fa` is included in the reference/ folder. The naming structure therein should be followed when curating reference sequences.
+
 
 Run the pipeline using the command:
 ```
-bash scripts/./00-run
+$ scripts/./00-run
 ```
 
 ## Authors and contributors
