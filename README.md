@@ -61,7 +61,7 @@ bash blastn
 
 Run the command:
 ```
-bash ./00-run
+bash scripts/./00-run
 ```
 
 ## Authors and contributors
