@@ -72,6 +72,7 @@ The folder structure should be as follows:
 ├── fq
 ├── out
 ├── reference
+    └── ref.fa
 └── scripts
 ```
 
