@@ -15,18 +15,18 @@ This pipeline generates both 97% OTUs and ZOTUs.
 The scripts contained herein are:
 
 ``` 
-00-run.sh                            - sets up folder structure and runs the below scripts in order:
+00-run.sh                            - setup folder structure and runs the below scripts:
 
-01-fastqc.sh
+01-fastqc.sh                         - QC check on reads
 02-merge.sh                          - merges paired-end amplicon reads
 03-strip.sh                          - removes primer binding regions from merged reads
 04-filter.sh                         - quality filtering of stripped reads 
 05-uniques.sh                        - generate unique reads and occurance numbers
 06-otus.sh                           - filters chimeras, clusters OTUs (cluster_otus) and generates ZOTUs (unoise3)
-07-otutable.sh                       - generates 97% OTU table and 99% ZOTU table
+07-otutable.sh                       - generates 97% OTU and 99% ZOTU tables
 08-taxonomy.sh                       - taxonomy assignment of OTUs/ZOTUs via user-inputted reference database
 09-blast.sh                          - taxonomy assignment of OTUs/ZOTUs using blastn nt database
-10-export.sh	                  - convert files for export into R
+10-export.sh	                     - convert files for export into R
 
 ```
 3 files produced for  each clustering type (*OTU/ZOTU*):
@@ -41,10 +41,30 @@ The scripts contained herein are:
 
 Install Usearch, 32-bit binary download available [here](https://drive5.com/usearch/download.html)
 
-Install blastn as per instructions [here](https://iamphioxus.org/2018/01/08/local-installation-of-ncbi-blast-together-with-the-nr-and-taxonomy-database/)
+Install BLASTn as per instructions [here](https://iamphioxus.org/2018/01/08/local-installation-of-ncbi-blast-together-with-the-nr-and-taxonomy-database/)
  - Reccomended: install the `nt` database locally if storage available
  - Get the latest version if accessing the `nt` database remotely via the `-remote` command.
 
+## How To
 
+### Bash Scripts
+
+#### Set up analysis environment
+
+Firstly, download this GitHub repository to your local file system and cd into the repository's folder
+
+Confirm both Usearch and BLASTn are installed correctly:
+```
+bash usearch
+bash blastn
+```
+
+Run the command:
+```
+bash scripts/./00-run
+```
+
+## Authors and contributors
+Samuel Thompson
 
                                    
