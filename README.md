@@ -45,7 +45,26 @@ Install BLASTn as per instructions [here](https://iamphioxus.org/2018/01/08/loca
  - Reccomended: install the `nt` database locally if storage available
  - Get the latest version if accessing the `nt` database remotely via the `-remote` command.
 
-## Contributors
+## How To
+
+### Bash Scripts
+
+#### Set up analysis environment
+
+Firstly, download this GitHub repository to your local file system and cd into the repository's folder
+
+Confirm both Usearch and BLASTn are installed correctly:
+```
+bash usearch
+bash blastn
+```
+
+Run the command:
+```
+bash ./00-run
+```
+
+## Authors and contributors
 Samuel Thompson
 
                                    
