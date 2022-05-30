@@ -15,7 +15,7 @@ This pipeline generates both 97% OTUs and ZOTUs.
 The scripts contained herein are:
 
 ``` 
-00-run.sh                            - sets up folder structure and runs the below scripts:
+00-run.sh                            - setup folder structure and runs the below scripts:
 
 01-fastqc.sh                         - QC check on reads
 02-merge.sh                          - merges paired-end amplicon reads
