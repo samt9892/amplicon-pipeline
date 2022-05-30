@@ -35,7 +35,7 @@ The scripts contained herein are:
 ```
 **_table.txt                      - matrix of reads per OTU/ZOTU
 **_sintax.txt                     - assigned taxa using reference database
-**_blast.txt                      - top 10 taxa hits using blast nt database
+**_blast.txt                      - top 10 taxa hits using BLAST nt database
 ```
 
 ## Dependencies 
