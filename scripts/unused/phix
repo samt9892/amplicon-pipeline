@@ -1,4 +1,0 @@
-#!/bin/bash
-usearch='C:/usearch11.0.667_win32.exe/usearch11.0.667_win32.exe' # usearch path
-cd '../out'
-$usearch -filter_phix merged.fq -output merged_nophix.fq -alnout phix_hits.txt
