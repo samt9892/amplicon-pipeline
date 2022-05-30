@@ -1,33 +1,15 @@
 #!/bin/bash
 rm -f -r ../out/*					# remove out folder 
-#./fastqc 							# doesn't work  cannot run binary file.. but is present from WA genomics
 ./merge								# merges raw seq files, set min/max length + max diffs / %id
-#./phix 							# only found 3 hits in entire merged data, WA genomics must have already filtered?
-./primercheck						# check subsample=5000 (per sample), align to primer seqs and see location
 ./strip 							# strip F 26bp, R 25bp
 ./filter							# quality filter seqs maxee=1.0
 ./uniques							# list of how many times filtered seqs appear in files 
 ./otus 								# make 97% OTU list + 99% ASV list filters chimeras (see log)
-./otutable							# make OTU and ASV tables -CHECK: otutab and usearch_global how they work and make choice on which to use
-./taxonomy							# asigns taxonomy to ASVs + OTUs
-#./otu_blast							# BLAST OTUs, may error out
-#./zotu_blast						# BLAST ZOTUs, may error out		
+./otutable						# make OTU and ASV tables -CHECK: otutab and usearch_global how they work and make choice on which to use
+./taxonomy						# asigns taxonomy to ASVs + OTUs
+./otu_blast						# BLAST OTUs, may error out
+./zotu_blast					# BLAST ZOTUs, may error out		
 ./export							# file housekeeping and exporting to R folder
 
 
-
-
-#then split due to memory limitations - not needed - as can trim/normalise in R
-#./merge
-#./merge_split
-#./strip_split
-#./filter_split
-#./uniques_split
-#./otus_split
-#./denoise_split
-#./otutable_split
-#./otutable_norm
-#./otutable_trim
-#./otutable_merge
-#./analysis_split
 
