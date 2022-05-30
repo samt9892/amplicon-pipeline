@@ -60,6 +60,10 @@ bash blastn
 
 Then download this GitHub repository to your local file system and `cd` into the repository's folder
 
+```
+bash git clone https://github.com/samt9892/amplicon-pipeline.git
+```
+
 The folder structure should be as follows:
 ```
 .
