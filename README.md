@@ -26,7 +26,7 @@ The scripts contained herein are:
 07-otus.sh                           - filters chimeras, clusters OTUs (cluster_otus) and generates ZOTUs (unoise3)
 08-otutable.sh                       - generates 97% OTU and 99% ZOTU tables
 09-taxonomy.sh                       - taxonomy assignment of OTUs/ZOTUs via user-inputted reference database
-10-blast.sh                          - taxonomy assignment of OTUs/ZOTUs using blastn nt database
+10-blast.sh                          - taxonomy assignment of OTUs/ZOTUs using BLASTn nt database
 11-export.sh	                     - convert files for export into R
 
 ```
