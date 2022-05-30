@@ -1,0 +1,20 @@
+#!/bin/bash
+cd '../out/'
+# Predict otu taxonomy - my custom db 0.8?
+usearch -sintax ../out/otus.fa -db ../reference/ref.fa -strand both \
+ -tabbedout ../out/otusintax.txt -sintax_cutoff 0.9
+# Predict asv taxonomy - my custom db 0.8?
+usearch -sintax ../out/zotus.fa -db ../reference/ref.fa -strand both \
+ -tabbedout ../out/zotusintax.txt -sintax_cutoff 0.9
+
+#Predict otu taxonomy - with mitofish db
+#usearch -sintax ../out/otus.fa -db ../reference/mitofish_complete_partial_v3.71.fa -strand both \
+ #-tabbedout ../out/otusintax_mitofish.txt -sintax_cutoff 0.8
+#Predict asv taxonomy - with mitofish db
+#usearch -sintax ../out/zotus.fa -db ../reference/mitofish_complete_partial_v3.71.fa -strand both \
+#-tabbedout ../out/zotusintax_mitofish.txt -sintax_cutoff 0.8
+
+#check sintax cutoff / confidence scores
+
+# Taxonomy summary reports - doesnt work cos 32bit
+#usearch -sintax_summary ../out/sintax.txt -otutabin otutab_raw.txt -rank s -output ../out/sintax_summary.txt

@@ -1,0 +1,5 @@
+cd '../out/'
+#subsample each sample to 5000
+usearch -fastx_subsample ../out/merged.fq -sample_size 5000 -fastqout ../out/sub_primercheck.fq
+#search for primers in subsample
+usearch -search_oligodb ../out/sub_primercheck.fq -db ../reference/primers_amplifying_region.fa -strand both -userout primer_hits.txt -userfields query+qlo+qhi+qstrand 

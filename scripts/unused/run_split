@@ -1,0 +1,16 @@
+#!/bin/bash
+rm -f -r ../out/*
+cd '~/projects/run1/scripts'
+#Here I start the pipe again but splitting due to 32-bit memory limitatons
+./merge
+./strip
+./merge_split
+./filter_split
+./uniques
+./otus
+./denoise
+./otutable_split
+./otutable_norm
+./otutable_trim
+./otutable_merge
+./taxonomy_split

@@ -1,0 +1,7 @@
+#!/bin/bash
+cd '../out/splits'
+for FILES in split*;
+do
+usearch -fastq_filter $FILES -fastq_maxee 1.0 \
+  -fastaout filter_$FILES -relabel Filt
+done

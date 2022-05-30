@@ -1,0 +1,48 @@
+#!/bin/bash
+cd '../out'
+
+#tables formatting
+sed -i.tmp 's/#OTU ID//' otutab_raw.txt
+sed -i.tmp 's/#OTU ID//' zotutab_raw.txt
+#export tables
+cp otutab_raw.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otutab_raw.txt
+cp zotutab_raw.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotutab_raw.txt
+#export taxonomic units raw
+cp otus.fa ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otus.txt
+cp zotus.fa ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotus.txt
+#export sintax - my custom reference db
+cp otusintax.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otusintax_raw.txt
+cp zotusintax.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotusintax_raw.txt
+
+#export sintax - mitofish db
+#cp otusintax_mitofish.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otusintax_mitofish.txt
+#cp zotusintax_mitofish.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotusintax_mitofish.txt
+
+#modify sintax files
+cd '../out'
+cut -f1 otusintax.txt > OTU_IDs
+cut -f4 otusintax.txt > raw_tax
+cut -d : -f2 raw_tax | cut -d , -f1 | sed 's/\"//g' > family
+cut -d : -f3 raw_tax | cut -d , -f1 | sed 's/\"//g' > species
+paste OTU_IDs family species > tax_temp
+echo -e "\totus\tfamily\tspecies\tspecies2" > header
+cat header tax_temp > otusintax_formatted.txt
+rm OTU_IDs raw_tax  family  species tax_temp header
+
+cut -f1 zotusintax.txt > OTU_IDs
+cut -f4 zotusintax.txt > raw_tax
+cut -d : -f2 raw_tax | cut -d , -f1 | sed 's/\"//g' > family
+cut -d : -f3 raw_tax | cut -d , -f1 | sed 's/\"//g' > species
+paste OTU_IDs family species > tax_temp
+echo -e "\totus\tfamily\tspecies\tspecies2" > header
+cat header tax_temp > zotusintax_formatted.txt
+
+#export sintax formatted for R
+cp otusintax_formatted.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otusintax_formatted.txt
+cp zotusintax_formatted.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotusintax_formatted.txt
+
+#export blastn results 
+cp blast_otus.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/blast_otus.txt
+cp blast_zotus.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/blast_zotus.txt
+
+rm header

@@ -1,0 +1,13 @@
+#!/bin/bash
+cd '../out/'
+# Predict taxonomy
+usearch -sintax ../out/otus.fa -db ../reference/ref.fa -strand both \
+ -tabbedout ../out/sintax.txt -sintax_cutoff 0.8
+
+# Taxonomy summary reports
+cd '/splits'
+for FILES in splits/trim_norm_otutab_split*;
+do
+    echo $FILES
+usearch -sintax_summary ../out/sintax.txt -otutabin $FILES -rank s -output ../out/sintax_summary_$(basename $FILES).txt
+done

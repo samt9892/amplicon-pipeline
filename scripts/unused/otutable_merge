@@ -1,0 +1,7 @@
+#!/bin/bash
+cd '../out/splits'
+#dirlist= echo $grep trim* | xargs echo | sed 's/ /,/g'  #trying to loop it
+#echo $dirlist
+usearch -otutab_merge trim_norm_otutab_split1.txt,trim_norm_otutab_split2.txt,trim_norm_otutab_split3.txt,trim_norm_otutab_split4.txt,trim_norm_otutab_split5.txt,trim_norm_otutab_split6.txt -output  otutab_merged.txt
+cp otutab_merged.txt ~/projects/run1/out/otutab_merged.txt
+#   echo $grep trim* | sed 's/ /,/g'   (this command works in terminal)

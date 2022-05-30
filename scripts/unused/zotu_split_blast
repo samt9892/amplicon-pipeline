@@ -1,0 +1,27 @@
+#!/bin/bash
+#had to do a manual install of blast+ to get latest version
+#nt database is 165gb and I dont have enough HDD space :( so trying the remote option which is problematic
+
+cd ../out/
+
+#split zotu file as running whole remotely causes errors
+usearch  -fastx_split zotus.fa -splits 12 -relabel @ -outname split_zotus@.txt
+
+
+
+#blast query split files
+read -t 300
+for FILES in split_zotus*;
+do
+    echo $FILES
+blastn -remote -db nt -evalue 1e-3 -perc_identity 92 -query $FILES -out blast_$(basename $FILES) -outfmt "6 qseqid sseqid staxids sscinames scomnames sskingdoms pident length qlen slen mismatch gapopen gaps qstart qend sstart send stitle evalue bitscore qcovs qcovhsp" -max_target_seqs 10
+    read -t 90 #pause for 5 min between iterations to not crash the server connection, can skip this with a keypress
+done
+
+#merge split files into one file
+#bash$ find . -name "blast_split_zotus*" -o -name "blast_split_zotus*" | xargs cat > ./zotus_merged_blast.txt
+
+#remove split zotus
+#rm split_zotus*
+#rm blast_split_zotus*
+#done

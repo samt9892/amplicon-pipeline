@@ -1,0 +1,7 @@
+#!/bin/bash
+cd '../out'
+for FILES in splits/otutab_split*;
+do
+# Normalize to 5k reads / sample
+usearch -otutab_rare $FILES -sample_size 5000 -output ../out/splits/norm_$(basename $FILES);
+done

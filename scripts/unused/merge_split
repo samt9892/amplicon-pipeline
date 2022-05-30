@@ -1,0 +1,4 @@
+#!/bin/bash
+cd '../out'
+mkdir splits
+usearch  -fastx_split merged.fq -splits 6 -relabel @ -outname splits/split@.fq

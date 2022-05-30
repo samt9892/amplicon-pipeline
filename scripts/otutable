@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Make raw OTU table 97%
+usearch -otutab ../out/merged.fq -db ../out/otus.fa \
+-strand plus -id 0.98 -otutabout ../out/otutab_raw.txt
+
+#make ZOTU table 99%
+usearch -otutab ../out/merged.fq -db ../out/zotus.fa \
+-strand plus -id 0.99 -otutabout ../out/zotutab_raw.txt
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+cd '../out/splits'
+for FILES in split*;
+do
+#stage 1 primers F 26 R 25 without binding sites
+usearch -fastx_truncate $FILES -stripleft 26 -stripright 25 \
+  -fastqout strip_$(basename ${FILES%%.fa}).fq 
+  
+done

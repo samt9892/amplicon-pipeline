@@ -1,0 +1,9 @@
+#!/bin/bash
+cd '../out'
+# Make raw OTU tables from splits
+
+for FILES in splits/split*;
+do
+	usearch -otutab $FILES -db otus.fa \
+	-strand plus -id 0.97 -otutabout ../out/splits/otutab_$(basename ${FILES%%.fa}).txt;
+done
