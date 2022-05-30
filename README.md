@@ -58,7 +58,7 @@ bash usearch
 bash blastn
 ```
 
-Then download this GitHub repository to your local file system and `cd` into the repository's folder
+Then download this GitHub repository to your local file system and `cd` into the repository's folder:
 
 ```
 bash git clone https://github.com/samt9892/amplicon-pipeline.git
@@ -76,6 +76,8 @@ The folder structure should be as follows:
 ```
 
 The pipeline expects fastq of your amplicon sequencing data in the fq/ folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`
+
+An example reference database `ref.fa` is included in the reference/ folder. The naming structure therein should be followed when adding reference sequences.
 
 Run the pipeline using the command:
 ```
