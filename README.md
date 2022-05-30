@@ -23,7 +23,7 @@ The scripts contained herein are:
 04-filter.sh                         - quality filtering of stripped reads 
 05-uniques.sh                        - generate unique reads and occurance numbers
 06-otus.sh                           - filters chimeras, clusters OTUs (cluster_otus) and generates ZOTUs (unoise3)
-07-otutable.sh                       - generates 97% OTU table and 99% ZOTU table
+07-otutable.sh                       - generates 97% OTU and 99% ZOTU tables
 08-taxonomy.sh                       - taxonomy assignment of OTUs/ZOTUs via user-inputted reference database
 09-blast.sh                          - taxonomy assignment of OTUs/ZOTUs using blastn nt database
 10-export.sh	                     - convert files for export into R
