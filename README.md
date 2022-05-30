@@ -60,7 +60,7 @@ bash blastn
 
 Then download this GitHub repository to your local file system and cd into the repository's folder
 
-The folder sturcture should be as follows:
+The folder structure should be as follows:
 ```
 .
 ├── export
@@ -73,7 +73,7 @@ The folder sturcture should be as follows:
 
 The pipeline expects fastq of your amplicon sequencing data in the fq/ folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`
 
-Run the command:
+Run the pipeline using the command:
 ```
 bash scripts/./00-run
 ```
