@@ -33,9 +33,9 @@ The scripts contained herein are:
 3 files produced for  each clustering type (*OTU/ZOTU*):
 
 ```
-**_table.txt                      - taxonomic unit table
-**_sintax.txt                     - assigned sintax using reference database
-**_blast.txt                      - top 10 hits using blast nt database
+**_table.txt                      - matrix of reads per OTU/ZOTU
+**_sintax.txt                     - assigned taxa using reference database
+**_blast.txt                      - top 10 taxa hits using blast nt database
 ```
 
 ## Dependencies 
