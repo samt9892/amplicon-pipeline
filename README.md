@@ -8,7 +8,7 @@
 
 # Overview 
 
-This repository contains a simple  [Usearch](https://drive5.com/usearch/new5.html) amplicon pipeline and allows use of a user-curated reference database and/or a `BLASTn` query for taxonomic identification. 
+This repository contains a simple  [Usearch](https://drive5.com/usearch/) amplicon pipeline and allows use of a user-curated reference database and/or a `BLASTn` query for taxonomic identification. 
 
 This pipeline generates both 97% OTUs and ZOTUs.
 
