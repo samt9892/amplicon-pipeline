@@ -15,7 +15,7 @@ This pipeline generates both 97% OTUs and ZOTUs.
 The scripts contained herein are:
 
 ``` 
-00-run.sh                            - sets up folder structure and runs the below scripts in order:
+00-run.sh                            - sets up folder structure and runs the below scripts:
 
 01-fastqc.sh                         - QC check on reads
 02-merge.sh                          - merges paired-end amplicon reads
@@ -26,7 +26,7 @@ The scripts contained herein are:
 07-otutable.sh                       - generates 97% OTU table and 99% ZOTU table
 08-taxonomy.sh                       - taxonomy assignment of OTUs/ZOTUs via user-inputted reference database
 09-blast.sh                          - taxonomy assignment of OTUs/ZOTUs using blastn nt database
-10-export.sh	                  - convert files for export into R
+10-export.sh	                     - convert files for export into R
 
 ```
 3 files produced for  each clustering type (*OTU/ZOTU*):
