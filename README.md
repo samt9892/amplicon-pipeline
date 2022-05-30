@@ -17,7 +17,7 @@ The scripts contained herein are:
 ``` 
 00-run.sh                            - runs the below scripts:
 
-01-setup.sh                             - builds folder structure, removing previous output data
+01-setup.sh                          - builds folder structure, removing previous output data
 02-fastqc.sh                         - QC check on reads
 03-merge.sh                          - merges paired-end amplicon reads
 04-strip_primers.sh                  - remove primer binding regions from merged reads
