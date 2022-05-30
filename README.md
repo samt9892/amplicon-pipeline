@@ -17,7 +17,7 @@ The scripts contained herein are:
 ``` 
 00-run.sh                            - sets up folder structure and runs the below scripts in order:
 
-01-fastqc.sh
+01-fastqc.sh                         - QC check on reads
 02-merge.sh                          - merges paired-end amplicon reads
 03-strip.sh                          - removes primer binding regions from merged reads
 04-filter.sh                         - quality filtering of stripped reads 
@@ -45,6 +45,7 @@ Install blastn as per instructions [here](https://iamphioxus.org/2018/01/08/loca
  - Reccomended: install the `nt` database locally if storage available
  - Get the latest version if accessing the `nt` database remotely via the `-remote` command.
 
-
+## Contributors
+Samuel Thompson
 
                                    
