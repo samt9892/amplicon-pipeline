@@ -54,14 +54,14 @@ Install BLAST+ as per instructions [here](https://iamphioxus.org/2018/01/08/loca
 
 Firstly, confirm both Usearch and BLASTn are installed correctly:
 ```
-bash usearch
-bash blastn
+$ usearch
+$ blastn
 ```
 
 Then download this GitHub repository to your local file system and `cd` into the repository's folder:
 
 ```
-bash git clone https://github.com/samt9892/amplicon-pipeline.git
+$ git clone https://github.com/samt9892/amplicon-pipeline.git
 ```
 
 The folder structure should be as follows:
@@ -81,7 +81,7 @@ An example reference database `ref.fa` is included in the reference/ folder. The
 
 Run the pipeline using the command:
 ```
-bash scripts/./00-run
+$ scripts/./00-run
 ```
 
 ## Authors and contributors
