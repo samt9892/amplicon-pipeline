@@ -60,7 +60,7 @@ bash blastn
 
 Then download this GitHub repository to your local file system and cd into the repository's folder
 
-The folder sturcture is as follows:
+The folder sturcture should be as follows:
 ```
 .
 ├── export
