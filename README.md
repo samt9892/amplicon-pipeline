@@ -44,7 +44,7 @@ Install Usearch, 32-bit binary download available [here](https://drive5.com/usea
 
 Install BLAST+ as per instructions [here](https://iamphioxus.org/2018/01/08/local-installation-of-ncbi-blast-together-with-the-nr-and-taxonomy-database/)
  - Reccomended: install the `nt` database locally if storage available
- - install the latest BLAST+ version if accessing databases remotely via the `-remote` command.
+ - install the latest BLAST+ version if accessing `nt` database remotely via the `-remote` command.
 
 ## How To
 
