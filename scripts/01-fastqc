@@ -1,16 +1,14 @@
 #!/bin/bash
 usearch='C:/usearch11.0.667_win32.exe/usearch11.0.667_win32.exe' # usearch path
-rm -f -r ../fastqc_check
+rm -f -r ../fastqc
 cd '..'
 
 # Pool all forward and all reverse reads separately to assess quality in fastqc
-mkdir fastqc_check
-chmod +744 fastqc_check
-cat fq/*_R1*.fastq >> fastqc_check/forward_reads.fastq
-cat fq/*_R2*.fastq >> fastqc_check/reverse_reads.fastq 
-mkdir fastqc_check/forward_reads
-mkdir fastqc_check/reverse_reads
+mkdir fastqc
+chmod +744 fastqc
+cat fq/*_R1*.fastq >> fastqc/forward_reads.fastq
+cat fq/*_R2*.fastq >> fastqc/reverse_reads.fastq 
 
 # Run fastqc on these files
-fastqc fastqc_check/forward_reads.fastq -o fastqc_check/forward_reads
-fastqc fastqc_check/reverse_reads.fastq -o fastqc_check/reverse_reads
+fastqc fastqc/forward_reads.fastq  
+fastqc fastqc/reverse_reads.fastq  

@@ -2,21 +2,12 @@
 cd '../out'
 
 #tables formatting
-sed -i.tmp 's/#OTU ID//' otutab_raw.txt
-sed -i.tmp 's/#OTU ID//' zotutab_raw.txt
-#export tables
-cp otu_table.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otutab_raw.txt
-cp zotu_table.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotutab_raw.txt
-#export taxonomic units raw
-cp otus.fa ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otus.txt
-cp zotus.fa ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotus.txt
-#export sintax - my custom reference db
-cp otusintax.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otusintax_raw.txt
-cp zotusintax.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotusintax_raw.txt
+sed -i.tmp 's/#OTU ID//' otu_table.txt
+sed -i.tmp 's/#OTU ID//' zotu_table.txt
 
-#export sintax - mitofish db
-#cp otusintax_mitofish.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otusintax_mitofish.txt
-#cp zotusintax_mitofish.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotusintax_mitofish.txt
+#export tables
+cp otu_table.txt ../export/otu_table.txt
+cp zotu_table.txt ../export/zotu_table.txt
 
 #modify sintax files
 cd '../out'
@@ -38,11 +29,11 @@ echo -e "\totus\tfamily\tspecies\tspecies2" > header
 cat header tax_temp > zotusintax_formatted.txt
 
 #export sintax formatted for R
-cp otusintax_formatted.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otusintax_formatted.txt
-cp zotusintax_formatted.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotusintax_formatted.txt
+cp otusintax_formatted.txt ../export/otu_sintax.txt
+cp zotusintax_formatted.txt ../export/zotu_sintax.txt
 
 #export blastn results 
-cp blast_otus.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/blast_otus.txt
-cp blast_zotus.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/blast_zotus.txt
+cp blast_otus.txt ../export/otu_blast.txt
+cp blast_zotus.txt ../export/zotu_blast.txt
 
 rm header

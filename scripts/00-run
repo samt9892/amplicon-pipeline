@@ -1,11 +1,12 @@
 #!/bin/bash
 rm -f -r ../out/*					# remove out folder 
-./merge								# merges raw seq files, set min/max length + max diffs / %id
-./strip 							# strip F 26bp, R 25bp
-./filter							# quality filter seqs maxee=1.0
-./uniques							# list of how many times filtered seqs appear in files 
-./otus 								# make 97% OTU list + 99% ASV list filters chimeras (see log)
-./otutable							# make OTU and ASV tables -CHECK: otutab and usearch_global how they work and make choice on which to use
-./taxonomy							# asigns taxonomy to ASVs + OTUs
-./blast							# BLAST OTUs, may error out if using from UWA IP address
-./export							# file housekeeping and exporting to R folder
+./01-fastqc
+./02-merge								# merges raw seq files, set min/max length + max diffs / %id
+./03-strip 							# strip F 26bp, R 25bp
+./04-filter							# quality filter seqs maxee=1.0
+./05-uniques							# list of how many times filtered seqs appear in files 
+./06-otus 								# make 97% OTU list + 99% ASV list filters chimeras (see log)
+./07-otutable							# make OTU and ASV tables -CHECK: otutab and usearch_global how they work and make choice on which to use
+./08-taxonomy							# asigns taxonomy to ASVs + OTUs
+./09-blast							# BLAST OTUs, may error out if using from UWA IP address
+./10-export							# file housekeeping and exporting to R folder
