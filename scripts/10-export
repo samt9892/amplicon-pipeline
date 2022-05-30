@@ -5,8 +5,8 @@ cd '../out'
 sed -i.tmp 's/#OTU ID//' otutab_raw.txt
 sed -i.tmp 's/#OTU ID//' zotutab_raw.txt
 #export tables
-cp otutab_raw.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otutab_raw.txt
-cp zotutab_raw.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotutab_raw.txt
+cp otu_table.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otutab_raw.txt
+cp zotu_table.txt ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotutab_raw.txt
 #export taxonomic units raw
 cp otus.fa ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/otus.txt
 cp zotus.fa ../../../../../../mnt/g/My\ Drive/Fieldtrip_1/R/input_files/run1/zotus.txt

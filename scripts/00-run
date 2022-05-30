@@ -5,11 +5,7 @@ rm -f -r ../out/*					# remove out folder
 ./filter							# quality filter seqs maxee=1.0
 ./uniques							# list of how many times filtered seqs appear in files 
 ./otus 								# make 97% OTU list + 99% ASV list filters chimeras (see log)
-./otutable						# make OTU and ASV tables -CHECK: otutab and usearch_global how they work and make choice on which to use
-./taxonomy						# asigns taxonomy to ASVs + OTUs
-./otu_blast						# BLAST OTUs, may error out
-./zotu_blast					# BLAST ZOTUs, may error out		
+./otutable							# make OTU and ASV tables -CHECK: otutab and usearch_global how they work and make choice on which to use
+./taxonomy							# asigns taxonomy to ASVs + OTUs
+./blast							# BLAST OTUs, may error out if using from UWA IP address
 ./export							# file housekeeping and exporting to R folder
-
-
-

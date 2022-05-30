@@ -2,9 +2,9 @@
 
 # Make raw OTU table 97%
 usearch -otutab ../out/merged.fq -db ../out/otus.fa \
--strand plus -id 0.97 -otutabout ../out/otutab_raw.txt
+-strand plus -id 0.97 -otutabout ../out/otu_table.txt
 
 #make ZOTU table 99%
 usearch -otutab ../out/merged.fq -db ../out/zotus.fa \
--strand plus -id 0.99 -otutabout ../out/zotutab_raw.txt
+-strand plus -id 0.99 -otutabout ../out/zotu_table.txt
 
