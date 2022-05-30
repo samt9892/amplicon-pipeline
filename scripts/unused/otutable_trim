@@ -1,7 +1,0 @@
-#!/bin/bash
-cd '../out'
-for FILES in splits/norm_otutab_split*;
-do
-#trim: delete samples with too few reads
-usearch -otutab_trim $FILES -min_sample_size 1000 -output ../out/splits/trim_$(basename ${FILES%%.fq.txt}).txt;
-done
