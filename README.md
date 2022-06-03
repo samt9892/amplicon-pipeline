@@ -69,15 +69,17 @@ The folder structure should be as follows:
 ```
 .
 ├── export
-├── fastqc
 ├── fq
+    └──*project_folder*
+        └──*project_folder*
+        └──fastqc    
 ├── out
 ├── reference
     └── ref.fa
 └── scripts
 ```
 
-The pipeline expects demultiplexed fastq of your amplicon sequencing data in the fq/ folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`
+The pipeline expects a folder containing demultiplexed fastq of your amplicon sequencing data in the fq/ folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`
 
 An example reference database `ref.fa` is included in the reference/ folder. The naming structure therein should be followed when curating reference sequences.
 
