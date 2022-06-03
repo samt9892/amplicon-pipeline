@@ -55,7 +55,7 @@ Install BLAST+ as per instructions [here](https://iamphioxus.org/2018/01/08/loca
 
 Firstly, confirm both Usearch and BLASTn are installed correctly:
 ```
-$ usearch
+$ $usearch
 $ blastn
 ```
 
@@ -71,7 +71,7 @@ The folder structure should be as follows:
 ├── export
 ├── fq
     └──*project_folder*
-        └──*project_folder*
+        └──*.fastq*
         └──fastqc    
 ├── out
 ├── reference
