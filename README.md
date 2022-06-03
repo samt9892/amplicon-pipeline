@@ -90,7 +90,7 @@ $ cd scripts
 $ ./00-run
 ```
 
-You will receive prompts for `*project_name*` folder and the `length` of your PCR primers
+You will receive prompts for `*project_name*` folder and the `length` of your PCR primers.
 
 ## Authors and contributors
 Samuel Thompson
