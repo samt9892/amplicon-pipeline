@@ -1,10 +1,10 @@
 #!/bin/bash
 cd '../out/'
 # Predict otu taxonomy - my custom db 0.8?
-usearch -sintax ../out/otus.fa -db ../reference/ref.fa -strand both \
+$usearch -sintax ../out/otus.fa -db ../reference/ref.fa -strand both \
  -tabbedout ../out/otusintax.txt -sintax_cutoff 0.9
 # Predict asv taxonomy - my custom db 0.8?
-usearch -sintax ../out/zotus.fa -db ../reference/ref.fa -strand both \
+$usearch -sintax ../out/zotus.fa -db ../reference/ref.fa -strand both \
  -tabbedout ../out/zotusintax.txt -sintax_cutoff 0.9
 
 #Predict otu taxonomy - with mitofish db

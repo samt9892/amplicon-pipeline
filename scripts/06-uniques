@@ -3,5 +3,5 @@
 # Find unique read sequences and abundances - 
 # takes each sequence, finds how many times it occurs in the file. 
 #Makes a list of each unique sequence + number of times it occurs so your computer doesn’t  sift through identical sequences
-usearch -fastx_uniques ../out/filtered.fa -fastaout ../out/uniques.fa \
+$usearch -fastx_uniques ../out/filtered.fa -fastaout ../out/uniques.fa \
   -relabel Uniq -sizeout
