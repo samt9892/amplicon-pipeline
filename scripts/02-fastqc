@@ -1,7 +1,10 @@
 #!/bin/bash
-echo "FastQC - Enter fq/ foldername:"
-read x
-cd '../fq/'${x}
+
+#define folder name
+echo "Enter fq/<foldername>:"
+read dir
+echo "Project directory is: fq/"${dir}
+cd '../fq/'${dir}
 rm -f -r fastqc
 
 # Pool all forward and all reverse reads separately to assess quality in fastqc

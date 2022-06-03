@@ -3,3 +3,4 @@ cd ..
 rm -f -r out/*						# remove out folder contents
 rm -f -r export/*					# remove export folder contents
 rm -f -r fastqc/*                   # remove fastqc folder contents
+

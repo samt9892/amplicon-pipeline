@@ -1,6 +1,15 @@
 #!/bin/bash
 #stage 1 primers, F = 59bp, R = 59 incl indexing binding sites
 #stage 1 primers F 26 R 25 without binding sites
-$usearch -fastx_truncate ../out/merged.fq -stripleft 26 -stripright 25 \
+
+echo "usearch - Enter Forward primer length (bp):"
+read x
+echo "usearch - Enter Reverse primer length (bp):"
+read y
+
+echo "Forward primer is ${x}bp long"
+echo "Reverse primer is ${y}bp long"
+
+$usearch -fastx_truncate ../out/merged.fq -stripleft $ -stripright 25 \
   -fastqout ../out/stripped.fq 
   #outfile called merge not strip so I can selectively turn off the strip at pipeline to see the impact

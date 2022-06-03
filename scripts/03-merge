@@ -1,7 +1,8 @@
 #!/bin/bash
-echo "usearch - Enter fq/<foldername>:"
-read x
-cd '../fq/'${x}
+echo "USEARCH - Enter fq/<foldername>:"
+read dir
+echo "USEARCH - Project directory is: fq/"${dir}
+cd '../fq/'${dir}
 $usearch -fastq_mergepairs *_R1*.fastq  -relabel @ \
 	-fastq_maxdiffs 5 -fastq_pctid 5 \
 	-fastq_minmergelen 80 -fastq_maxmergelen 300 \
