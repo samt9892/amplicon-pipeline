@@ -70,7 +70,7 @@ The folder structure should be as follows:
 .
 ├── export
 ├── fq
-    └──*project_folder*
+    └──*project_name*
         └──*.fastq*
         └──fastqc    
 ├── out
@@ -79,7 +79,7 @@ The folder structure should be as follows:
 └── scripts
 ```
 
-The pipeline expects a folder containing demultiplexed fastq of your amplicon sequencing data in the fq/ folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`
+The pipeline expects a `*project_name*` folder containing demultiplexed fastq of your amplicon sequencing data in the fq/ folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`
 
 An example reference database `ref.fa` is included in the reference/ folder. The naming structure therein should be followed when curating reference sequences.
 
@@ -89,6 +89,8 @@ Run the pipeline using the command:
 $ cd scripts
 $ ./00-run
 ```
+
+You will receive prompts for `*project_name*` folder and the `length` of your PCR primers
 
 ## Authors and contributors
 Samuel Thompson
