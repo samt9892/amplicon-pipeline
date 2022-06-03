@@ -41,6 +41,7 @@ The scripts contained herein are:
 ## Dependencies 
 
 Install Usearch, 32-bit binary download available [here](https://drive5.com/usearch/download.html)
+ - Make sure the the $usearch environment variable is [set](https://drive5.com/usearch/manual/env_usearch.html)
 
 Install BLAST+ as per instructions [here](https://iamphioxus.org/2018/01/08/local-installation-of-ncbi-blast-together-with-the-nr-and-taxonomy-database/)
  - Reccomended: install the `nt` database locally if storage available
