@@ -17,7 +17,7 @@ The scripts contained herein are:
 ``` 
 00-run.sh                            - runs the below scripts:
 
-01-setup.sh                          - builds folder structure, removing previous output data
+01-setup.sh                          - Prompts for user-inputs, builds folder structure (execute in the calling shell)
 02-fastqc.sh                         - QC check on reads
 03-merge.sh                          - merges paired-end amplicon reads
 04-strip_primers.sh                  - remove primer binding regions from merged reads
@@ -44,8 +44,8 @@ Install Usearch, 32-bit binary download available [here](https://drive5.com/usea
  - Make sure the the $usearch environment variable is [set](https://drive5.com/usearch/manual/env_usearch.html)
 
 Install BLAST+ as per instructions [here](https://iamphioxus.org/2018/01/08/local-installation-of-ncbi-blast-together-with-the-nr-and-taxonomy-database/)
- - Reccomended: install the `nt` database locally if storage available
- - install the latest BLAST+ version if accessing `nt` database remotely via the `-remote` command.
+ - Reccomended: install the `nt` database locally if storage/compute available
+ - Alternatively: install the latest BLAST+ version if accessing `nt` database remotely via the `-remote` command.
 
 ## How To
 
@@ -69,28 +69,30 @@ The folder structure should be as follows:
 ```
 .
 ├── export
+├── fastqc
 ├── fq
     └──*project_name*
-        └──*.fastq*
-        └──fastqc    
+        └──*.fastq*  
 ├── out
 ├── reference
     └── ref.fa
 └── scripts
 ```
 
-The pipeline expects a `*project_name*` folder containing demultiplexed fastq of your amplicon sequencing data in the fq/ folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`
+The pipeline expects a `*project_name*` folder containing demultiplexed fastq of your amplicon sequencing data in the fq/ folder. The files should be named `*sample_name*_R1.fastq` and `*sample_name*_R2.fastq`.
 
 An example reference database `ref.fa` is included in the reference/ folder. The naming structure therein should be followed when curating reference sequences.
 
 
-Run the pipeline using the command:
+Run the pipeline using the commands:
 ```
 $ cd scripts
 $ ./00-run
 ```
 
-You will receive prompts for `*project_name*` folder and the `length` of your PCR primers.
+Follow prompts for user-input during setup.
+
+Outputs will be generated in `*project_name*` subdirectories of export/ , fastqc/ , out/
 
 ## Authors and contributors
 Samuel Thompson
