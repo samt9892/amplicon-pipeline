@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./01-setup							# delete old directories and setup folder structure
+. 01-setup							# delete old directories and setup folder structure
 ./02-fastqc                         # QC check reads 
 ./03-merge							# merges raw seq files, set min/max length + max diffs / %id
 ./04-strip_primers				    # strip F 26bp, R 25bp (modify for your primer lengths)
@@ -9,5 +9,5 @@
 ./07-otus 							# make 97% OTU list + 99% ASV list filters chimeras (see log)
 ./08-otutable						# make OTU and ASV tables -CHECK: otutab and usearch_global how they work and make choice on which to use
 ./09-taxonomy						# asigns taxonomy to ASVs + OTUs
-#./10-blast							# BLAST OTUs, may error out if using from UWA IP address
+./10-blast							# BLAST OTUs, may error out if using from UWA IP address
 ./11-export							# file housekeeping and exporting to R folder

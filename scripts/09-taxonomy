@@ -1,11 +1,13 @@
 #!/bin/bash
-cd '../out/'
+cd '../out/'${active_dir}
+
+echo "USEARCH taxonomy assignment using" ${refdb}
 # Predict otu taxonomy - my custom db 0.8?
-$usearch -sintax ../out/otus.fa -db ../reference/ref.fa -strand both \
- -tabbedout ../out/otusintax.txt -sintax_cutoff 0.9
+$usearch -sintax otus.fa -db ../../reference/${refdb} -strand both \
+ -tabbedout otusintax.txt -sintax_cutoff 0.9
 # Predict asv taxonomy - my custom db 0.8?
-$usearch -sintax ../out/zotus.fa -db ../reference/ref.fa -strand both \
- -tabbedout ../out/zotusintax.txt -sintax_cutoff 0.9
+$usearch -sintax zotus.fa -db ../../reference/${refdb} -strand both \
+ -tabbedout zotusintax.txt -sintax_cutoff 0.9
 
 #Predict otu taxonomy - with mitofish db
 #usearch -sintax ../out/otus.fa -db ../reference/mitofish_complete_partial_v3.71.fa -strand both \

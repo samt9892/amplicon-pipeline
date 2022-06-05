@@ -1,21 +1,15 @@
 #!/bin/bash
 
-#define folder name
-echo "Enter fq/<foldername>:"
-read dir
-echo "Project directory is: fq/"${dir}
-cd '../fq/'${dir}
-rm -f -r fastqc
+echo "FASTQC - Project directory is: fq/"${active_dir}
+cd '../fq/'${active_dir}
 
 # Pool all forward and all reverse reads separately to assess quality in fastqc
-mkdir fastqc
-chmod +744 fastqc
+cat *_R1*.fastq >> ../../fastqc/${active_dir}/forward_reads.fastq
+cat *_R2*.fastq >> ../../fastqc/${active_dir}/reverse_reads.fastq 
 
-
-
-cat *_R1*.fastq >> fastqc/forward_reads.fastq
-cat *_R2*.fastq >> fastqc/reverse_reads.fastq 
-
+cd '../../'fastqc/${active_dir}
 # Run fastqc on these files
-fastqc fastqc/forward_reads.fastq  
-fastqc fastqc/reverse_reads.fastq  
+fastqc forward_reads.fastq  
+fastqc reverse_reads.fastq  
+ 
+# cd '../../scripts'

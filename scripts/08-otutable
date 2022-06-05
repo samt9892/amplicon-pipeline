@@ -1,10 +1,10 @@
 #!/bin/bash
-
+cd '../out/'${active_dir}
 # Make raw OTU table 97%
-$usearch -otutab ../out/merged.fq -db ../out/otus.fa \
--strand plus -id 0.97 -otutabout ../out/otu_table.txt
+$usearch -otutab merged.fq -db otus.fa \
+-strand plus -id 0.97 -otutabout otu_table.txt
 
 #make ZOTU table 99%
-$usearch -otutab ../out/merged.fq -db ../out/zotus.fa \
--strand plus -id 0.99 -otutabout ../out/zotu_table.txt
+$usearch -otutab merged.fq -db zotus.fa \
+-strand plus -id 0.99 -otutabout zotu_table.txt
 

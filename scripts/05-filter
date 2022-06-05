@@ -1,5 +1,5 @@
 #!/bin/bash
-cd '../out/'
+cd '../out/'${active_dir}
 #filter based on maximum error of 1.0
 $usearch -fastq_filter stripped.fq -fastq_maxee 1.0 \
   -fastaout filtered.fa -relabel Filt -fastaout_discarded filtered_discarded.fa

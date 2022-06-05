@@ -2,8 +2,14 @@
 #had to do a manual install of blast+ to get latest version
 #this script is placed in the blast+ install directory inside the project folder
 #nt database is 165gb and 
-cd ../out
+cd '../out/'${active_dir}'/'
 #blast otus
-blastn -remote -db nt -evalue 1e-3 -perc_identity 92  -query otus.fa -out blast_otus.txt -outfmt "6 qseqid sseqid staxids sscinames scomnames sskingdoms pident length qlen slen mismatch gapopen gaps qstart qend sstart send stitle evalue bitscore qcovs qcovhsp" -max_target_seqs 10
-#blast zotus
-blastn -remote -db nt -evalue 1e-3 -perc_identity 92  -query zotus.fa -out blast_zotus.txt -outfmt "6 qseqid sseqid staxids sscinames scomnames sskingdoms pident length qlen slen mismatch gapopen gaps qstart qend sstart send stitle evalue bitscore qcovs qcovhsp" -max_target_seqs 10
+if [[ ${blastyn}=1 ]]; then
+		echo "User-selected BLAST search"
+		blastn -remote -db nt -evalue 1e-3 -perc_identity 92  -query otus.fa -out blast_otus.txt -outfmt "6 qseqid sseqid staxids sscinames scomnames sskingdoms pident length qlen slen mismatch gapopen gaps qstart qend sstart send stitle evalue bitscore qcovs qcovhsp" -max_target_seqs 10
+		#blast zotus
+		blastn -remote -db nt -evalue 1e-3 -perc_identity 92  -query zotus.fa -out blast_zotus.txt -outfmt "6 qseqid sseqid staxids sscinames scomnames sskingdoms pident length qlen slen mismatch gapopen gaps qstart qend sstart send stitle evalue bitscore qcovs qcovhsp" -max_target_seqs 10
+elif [[ ${blastyn}=0 ]]; then
+		echo "User-omitted BLAST search"
+
+fi

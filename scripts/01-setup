@@ -1,6 +1,52 @@
 #!/bin/bash
-cd ..
-rm -f -r out/*						# remove out folder contents
-rm -f -r export/*					# remove export folder contents
-rm -f -r fastqc/*                   # remove fastqc folder contents
+#cd ..
+#rm -f -r out/*						# remove out folder contents
+#rm -f -r export/*					# remove export folder contents
+#rm -f -r fastqc/*                   # remove fastqc folder contents
+
+#set input folder
+read -p "FASTQC - Enter fq/<foldername>: " active_dir
+export active_dir
+
+#Remove previous output data
+read -p "Remove previous ${active_dir} data? [y/n]: " rm_data
+        case $rm_data in
+            [Yy]*) 
+rm -rd ../out/${active_dir}                     # remove out folder contents
+rm -rd ../fastqc/${active_dir}                  # remove export folder contents
+rm -rd ../export/${active_dir}                  # remove fastqc folder contents
+mkdir ../out/${active_dir}
+mkdir ../fastqc/${active_dir}
+mkdir ../export/${active_dir}
+         ;;  
+            [Nn]*)  ;; 
+        esac
+
+
+#rm -rd ../out/${active_dir}						# remove out folder contents
+#rm -rd ../fastqc/${active_dir}					# remove export folder contents
+#rm -rd ../export/${active_dir}                  # remove fastqc folder contents
+#mkdir ../out/${active_dir}
+#mkdir ../fastqc/${active_dir}
+#mkdir ../export/${active_dir}
+
+#set PCR primer lengths
+read -p "USEARCH - Enter Forward primer length (bp): " fwd_primer
+export fwd_primer
+read -p "USEARCH - Enter Reverse primer length (bp): " rev_primer
+export rev_primer
+
+#set reference database
+read -p "USEARCH - Enter reference/<databasename>: " refdb
+export refdb
+
+#BLAST search?
+read -p "BLAST - Search against ncbi-BLAST nt database [y/n]? " yn
+        case $yn in
+            [Yy]*) export blastyn=1  ;;  
+            [Nn]*) export blastyn=0 ;; 
+        esac
+echo ${blastyn}
+export blastyn
+
 
