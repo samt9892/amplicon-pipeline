@@ -92,7 +92,7 @@ $ ./00-run
 
 Follow prompts for user-input during setup.
 
-Outputs will be generated in `*project_name*` subdirectories of export/ , fastqc/ , out/
+Outputs will be generated in `*project_name*` subdirectories of export/ , fastqc/ , out
 
 ## Authors and contributors
 Samuel Thompson
