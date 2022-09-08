@@ -1,0 +1,145 @@
+#!/bin/bash
+
+#### 01-SETUP ####
+#set input folder
+read -p "FASTQC - Enter fq/<foldername>: " active_dir
+export active_dir
+#Remove previous output data
+read -p "Remove previous ${active_dir} data? [y/n]: " rm_data
+        case $rm_data in
+            [Yy]*) 
+rm -rd ../out/${active_dir}                     # remove out folder contents
+rm -rd ../fastqc/${active_dir}                  # remove export folder contents
+rm -rd ../export/${active_dir}                  # remove fastqc folder contents
+mkdir ../out/${active_dir}
+mkdir ../fastqc/${active_dir}
+mkdir ../export/${active_dir}
+         ;;  
+            [Nn]*)  ;; 
+        esac
+#set PCR primer lengths
+read -p "USEARCH - Enter Forward primer length (bp): " fwd_primer
+export fwd_primer
+read -p "USEARCH - Enter Reverse primer length (bp): " rev_primer
+export rev_primer
+#set reference database
+read -p "USEARCH - Enter reference/<databasename>: " refdb
+export refdb
+#BLAST search?
+read -p "BLAST - Search against ncbi-BLAST nt database [y/n]? " yn
+        case $yn in
+            [Yy]*) export blastyn=1  ;;  
+            [Nn]*) export blastyn=0 ;; 
+        esac
+echo ${blastyn}
+#set CPU threads
+read -p "USEARCH - Set number of CPU threads: " cputhreads
+export cputhreads
+
+
+#### 02-FASTQC ####
+cd '../fq/'${active_dir}
+echo "USEARCH - raw .fq file directory is:" $(pwd)
+# Pool all forward and all reverse reads separately to assess quality in fastqc
+cat *_R1*.fastq >> ../../fastqc/${active_dir}/forward_reads.fastq
+cat *_R2*.fastq >> ../../fastqc/${active_dir}/reverse_reads.fastq 
+cd '../../'fastqc/${active_dir}
+echo "FASTQC - file output directory is:" $(pwd)
+# Run fastqc on these files
+fastqc forward_reads.fastq  
+fastqc reverse_reads.fastq  
+
+#### 03-MERGE ####
+cd '../../fq/'${active_dir}
+echo "USEARCH - raw .fq file directory is:" $(pwd)
+$usearch -fastq_mergepairs *_R1*.fastq  -relabel @ \
+	-fastq_maxdiffs 5 -fastq_pctid 5 \
+	-fastq_minmergelen 80 -fastq_maxmergelen 300 \
+  -threads ${cputhreads} \
+	-fastqout ../../out/${active_dir}/merged.fq \
+	-report ../../out/${active_dir}/merge.log
+
+#### 04-STRIP_PRIMERS ####
+cd '../../out/'${active_dir}
+echo "Forward primer is ${fwd_primer}bp long"
+echo "Reverse primer is ${rev_primer}bp long"
+$usearch -fastx_truncate merged.fq -stripleft ${fwd_primer} -stripright ${rev_primer} \
+  -fastqout stripped.fq 
+
+#### 05-FILTER ####
+#filter based on maximum error of 1.0
+$usearch -fastq_filter stripped.fq -fastq_maxee 1.0 -threads ${cputhreads} \
+  -fastaout filtered.fa -relabel Filt -fastaout_discarded filtered_discarded.fa
+
+#### 06-UNIQUES ####
+# Find unique read sequences and abundances
+$usearch -fastx_uniques filtered.fa -fastaout uniques.fa \
+  -relabel Uniq -sizeout
+
+#### 07-OTUS ####
+# Make 97% OTUs and filter chimeras (log will show filtered chimeras)
+$usearch -cluster_otus uniques.fa -minsize 5 \
+-otus otus.fa -relabel Otu -log cluster_otus.log
+# Denoise: predict biological sequences and filter chimeras (log will show filtered chimeras
+$usearch -unoise3 uniques.fa -zotus zotus.fa -minsize 5 -log cluster_zotus.log
+
+#### 08-OTUTABLE ####
+# Make raw OTU table 97%
+$usearch -otutab merged.fq -db otus.fa -threads ${cputhreads} \
+-strand plus -id 0.97 -otutabout otu_table.txt
+#make ZOTU table 99%
+#$usearch -otutab merged.fq -db zotus.fa -threads ${cputhreads} \
+#-strand plus -id 0.99 -otutabout zotu_table.txt
+
+#### 09-TAXONOMY ####
+echo "USEARCH taxonomy assignment using" ${refdb}
+# Predict otu taxonomy - my custom db 0.8?
+$usearch -sintax otus.fa -db ../../reference/${refdb} -strand both \
+ -tabbedout otusintax.txt -sintax_cutoff 0.9
+# Predict asv taxonomy - my custom db 0.8?
+$usearch -sintax zotus.fa -db ../../reference/${refdb} -strand both \
+ -tabbedout zotusintax.txt -sintax_cutoff 0.9
+
+#### 10-BLAST ####
+#blast otus
+echo "blast variable value:"${blastyn}
+if [[ ${blastyn} -eq "1" ]]; then
+		echo "User-selected BLAST search"
+		blastn -remote -db nt -evalue 1e-3 -perc_identity 92  -query otus.fa -out blast_otus.txt -outfmt "6 qseqid sseqid staxids sscinames scomnames sskingdoms pident length qlen slen mismatch gapopen gaps qstart qend sstart send stitle evalue bitscore qcovs qcovhsp" -max_target_seqs 10
+		#blast zotus
+		blastn -remote -db nt -evalue 1e-3 -perc_identity 92  -query zotus.fa -out blast_zotus.txt -outfmt "6 qseqid sseqid staxids sscinames scomnames sskingdoms pident length qlen slen mismatch gapopen gaps qstart qend sstart send stitle evalue bitscore qcovs qcovhsp" -max_target_seqs 10
+else 
+		echo "User-omitted BLAST search"
+fi
+
+#### 11-EXPORT ####
+#tables formatting
+sed -i.tmp 's/#OTU ID//' otu_table.txt
+sed -i.tmp 's/#OTU ID//' zotu_table.txt
+#export tables
+cp otu_table.txt ../../export/${active_dir}/otu_table.txt
+cp zotu_table.txt ../../export/${active_dir}/zotu_table.txt
+#modify sintax files OTU
+cut -f1 otusintax.txt > OTU_IDs
+cut -f4 otusintax.txt > raw_tax
+cut -d : -f2 raw_tax | cut -d , -f1 | sed 's/\"//g' > family
+cut -d : -f3 raw_tax | cut -d , -f1 | sed 's/\"//g' > species
+paste OTU_IDs family species > tax_temp
+echo -e "\totus\tfamily\tspecies\tspecies2" > header
+cat header tax_temp > otusintax_formatted.txt
+rm OTU_IDs raw_tax  family  species tax_temp header
+#modify sintax files ZOTU
+cut -f1 zotusintax.txt > OTU_IDs
+cut -f4 zotusintax.txt > raw_tax
+cut -d : -f2 raw_tax | cut -d , -f1 | sed 's/\"//g' > family
+cut -d : -f3 raw_tax | cut -d , -f1 | sed 's/\"//g' > species
+paste OTU_IDs family species > tax_temp
+echo -e "\totus\tfamily\tspecies\tspecies2" > header
+cat header tax_temp > zotusintax_formatted.txt
+rm OTU_IDs raw_tax  family  species tax_temp header
+#export sintax formatted for R
+cp otusintax_formatted.txt ../../export/${active_dir}/otu_sintax.txt
+cp zotusintax_formatted.txt ../../export/${active_dir}/zotu_sintax.txt
+#export blastn results 
+cp blast_otus.txt ../../export/${active_dir}/otu_blast.txt
+cp blast_zotus.txt ../../export/${active_dir}/zotu_blast.txt

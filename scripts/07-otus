@@ -1,7 +1,0 @@
-#!/bin/bash
-cd ../out/${active_dir}
-# Make 97% OTUs and filter chimeras (log will show filtered chimeras)
-$usearch -cluster_otus uniques.fa -minsize 5 \
--otus otus.fa -relabel Otu -log cluster_otus.log
-# Denoise: predict biological sequences and filter chimeras (log will show filtered chimeras
-$usearch -unoise3 uniques.fa -zotus zotus.fa -minsize 5 -log cluster_zotus.log
