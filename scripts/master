@@ -88,8 +88,8 @@ $usearch -unoise3 uniques.fa -zotus zotus.fa -minsize 5 -log cluster_zotus.log
 $usearch -otutab merged.fq -db otus.fa -threads ${cputhreads} \
 -strand plus -id 0.97 -otutabout otu_table.txt
 #make ZOTU table 99%
-#$usearch -otutab merged.fq -db zotus.fa -threads ${cputhreads} \
-#-strand plus -id 0.99 -otutabout zotu_table.txt
+$usearch -otutab merged.fq -db zotus.fa -threads ${cputhreads} \
+-strand plus -id 0.99 -otutabout zotu_table.txt
 
 #### 09-TAXONOMY ####
 echo "USEARCH taxonomy assignment using" ${refdb}
@@ -102,14 +102,13 @@ $usearch -sintax zotus.fa -db ../../reference/${refdb} -strand both \
 
 #### 10-BLAST ####
 #blast otus
-echo "blast variable value:"${blastyn}
 if [[ ${blastyn} -eq "1" ]]; then
-		echo "User-selected BLAST search"
+		echo "User-selected BLASTn remote search"
 		blastn -remote -db nt -evalue 1e-3 -perc_identity 92  -query otus.fa -out blast_otus.txt -outfmt "6 qseqid sseqid staxids sscinames scomnames sskingdoms pident length qlen slen mismatch gapopen gaps qstart qend sstart send stitle evalue bitscore qcovs qcovhsp" -max_target_seqs 10
 		#blast zotus
 		blastn -remote -db nt -evalue 1e-3 -perc_identity 92  -query zotus.fa -out blast_zotus.txt -outfmt "6 qseqid sseqid staxids sscinames scomnames sskingdoms pident length qlen slen mismatch gapopen gaps qstart qend sstart send stitle evalue bitscore qcovs qcovhsp" -max_target_seqs 10
 else 
-		echo "User-omitted BLAST search"
+		echo "User-omitted BLASTn remote search"
 fi
 
 #### 11-EXPORT ####
