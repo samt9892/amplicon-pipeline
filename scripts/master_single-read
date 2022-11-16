@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#### 01-SETUP ####
+#set input folder
+read -p "FASTQC - Enter fq/<foldername>: " active_dir
+export active_dir
+#Remove previous output data
+read -p "Remove previous ${active_dir} data? [y/n]: " rm_data
+        case $rm_data in
+            [Yy]*) 
+rm -rd ../out/${active_dir}                     # remove out folder contents
+rm -rd ../fastqc/${active_dir}                  # remove export folder contents
+rm -rd ../export/${active_dir}                  # remove fastqc folder contents
+mkdir ../out/${active_dir}
+mkdir ../fastqc/${active_dir}
+mkdir ../export/${active_dir}
+         ;;  
+            [Nn]*)  ;; 
+        esac
+#set PCR primer lengths
+read -p "USEARCH - Enter Forward primer length (bp): " fwd_primer
+export fwd_primer
+read -p "USEARCH - Enter Reverse primer length (bp): " rev_primer
+export rev_primer
+#generate OTUs as well as ASVs?
+read -p "USEARCH - Generate OTUs as well as ASVs? [y/n]: " yn1
+        case $yn1 in
+            [Yy]*) export otuyn=1 ;;  
+            [Nn]*) export otuyn=0 ;; 
+        esac
+        echo ${otuyn}
+#set reference database
+read -p "USEARCH - Enter reference/<databasename>: " refdb
+export refdb
+#BLAST search?
+read -p "BLAST - Search against ncbi-BLAST nt database [y/n]? " yn2
+        case $yn2 in
+            [Yy]*) export blastyn=1 ;;  
+            [Nn]*) export blastyn=0 ;; 
+        esac
+echo ${blastyn}
+#set CPU threads
+read -p "USEARCH - Set number of CPU threads: " cputhreads
+export cputhreads
+
+
+
+#### 02-FASTQC/MULTIQC ####
+cd '../fq/'${active_dir}
+echo "USEARCH - raw .fq file directory is:" $(pwd)
+#run fastQC+multiQC on each sample individually
+fastqc *.fastq --outdir=../../fastqc/${active_dir}/
+multiqc ../../fastqc/${active_dir}/
+# Pool all forward and all reverse reads separately to assess quality in fastqc
+cat *.fastq >> ../../fastqc/${active_dir}/reads.fastq
+cd '../../'fastqc/${active_dir}
+echo "FASTQC - file output directory is:" $(pwd)
+# Run fastqc on these files
+fastqc reads.fastq  
+
+#### 03-Cutadapt #### - remove non-biological sequences at the 3' end of shorter reads
+
+
