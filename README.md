@@ -46,6 +46,12 @@ Install Usearch, 32-bit binary download available [here](https://drive5.com/usea
 Install BLAST+ as per instructions [here](https://iamphioxus.org/2018/01/08/local-installation-of-ncbi-blast-together-with-the-nr-and-taxonomy-database/)
  - Reccomended: install the `nt` database locally if storage/compute available
  - Alternatively: install the latest BLAST+ version if accessing `nt` database remotely via the `-remote` command.
+ 
+Install FastQC as per instructions [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/INSTALL.txt)
+ - from linux command line: `sudo apt install fastqc`
+
+Install MultiQC as per instructions [here](https://multiqc.info/)
+
 
 ## How To
 
